@@ -2,7 +2,7 @@ package com.spring.security.services.impl;
 
 import com.spring.security.persistence.entity.UserEntity;
 import com.spring.security.persistence.repository.UserRepository;
-import com.spring.security.services.IAuthServiceImpl;
+import com.spring.security.services.IAuthService;
 import com.spring.security.services.IJWTUtilityService;
 import com.spring.security.services.models.dtos.LoginDTO;
 import com.spring.security.services.models.dtos.ResponseDTO;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AuthServiceImpl implements IAuthServiceImpl {
+public class AuthServiceImpl implements IAuthService {
 
     @Autowired
     private UserRepository userRepository;
