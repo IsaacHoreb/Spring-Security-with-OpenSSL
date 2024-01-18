@@ -35,4 +35,6 @@ public class AuthControllers {
 
     }
 
+    //Despues de crear el login y registrar tenemos que verificar en el service llamado como 'UserServiceImpl'
+
 }
