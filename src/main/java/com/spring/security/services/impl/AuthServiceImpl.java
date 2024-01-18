@@ -9,11 +9,13 @@ import com.spring.security.services.models.dtos.ResponseDTO;
 import com.spring.security.services.models.validation.UserValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class AuthServiceImpl implements IAuthServiceImpl {
 
     @Autowired
@@ -55,6 +57,7 @@ public class AuthServiceImpl implements IAuthServiceImpl {
     }
 
     // -> 3ro
+    @Override
     public ResponseDTO registrar(UserEntity user) throws Exception {
         try {
             ResponseDTO response = userValidation.validation(user); //Para validar
