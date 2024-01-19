@@ -3,6 +3,7 @@ package com.spring.security.security;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.spring.security.services.IJWTUtilityService;
+import com.spring.security.services.impl.JWTUtilityServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,10 +23,10 @@ import java.util.Collections;
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     @Autowired
-    IJWTUtilityService jwtUtilityService;
+    JWTUtilityServiceImpl jwtUtilityService;
 
     //Se agrega para usar en el SecurityConfig
-    public JWTAuthorizationFilter(IJWTUtilityService jwtUtilityService) {
+    public JWTAuthorizationFilter(JWTUtilityServiceImpl jwtUtilityService) {
         this.jwtUtilityService = jwtUtilityService;
     }
 
@@ -35,7 +36,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
         String header = request.getHeader("Authorization"); //Obtengo al pedir
 
         //Condiccion no cumple
-        if (header == null || header.startsWith("Bearer ")) {
+        if (header == null || !header.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }

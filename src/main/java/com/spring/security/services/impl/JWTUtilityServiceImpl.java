@@ -21,6 +21,7 @@ import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.text.ParseException;
 import java.util.Base64;
 import java.util.Date;
@@ -110,9 +111,8 @@ public class JWTUtilityServiceImpl implements IJWTUtilityService { // -> 2do agr
 
         byte[] decodeKey = Base64.getDecoder().decode(publicKeyPEM); //Decodificador
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        return keyFactory.generatePublic(new PKCS8EncodedKeySpec(decodeKey));
+        return keyFactory.generatePublic(new X509EncodedKeySpec(decodeKey));
 
     }
-
 
 }

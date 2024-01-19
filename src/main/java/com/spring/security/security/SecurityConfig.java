@@ -1,6 +1,7 @@
 package com.spring.security.security;
 
 import com.spring.security.services.IJWTUtilityService;
+import com.spring.security.services.impl.JWTUtilityServiceImpl;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +33,7 @@ public class SecurityConfig { //Despues de terminar esta configuracion (Password
                 })
                 .sessionManagement(sessionManeger -> sessionManeger.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(
-                        new JWTAuthorizationFilter(jwtUtilityService),
+                        new JWTAuthorizationFilter((JWTUtilityServiceImpl) jwtUtilityService),
                         UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(excepcionHandlig ->
                         excepcionHandlig.authenticationEntryPoint((request, response, authException)

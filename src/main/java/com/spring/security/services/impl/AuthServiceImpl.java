@@ -50,8 +50,12 @@ public class AuthServiceImpl implements IAuthService {
 
             return jwt;
 
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error generating JWT: " + e.getMessage());
+            throw new Exception("Error generating JWT", e);
         } catch (Exception e) {
-            throw new Exception(e.toString());
+            System.err.println("Unknown error: " + e.toString());
+            throw new Exception("Unknown error", e);
         }
 
     }
@@ -62,11 +66,11 @@ public class AuthServiceImpl implements IAuthService {
         try {
             ResponseDTO response = userValidation.validation(user); //Para validar
 
+            List<UserEntity> getAllUsers = userRepository.findAll();
+
             if (response.getNumOfErrors() > 0) {
                 return response;
             }
-
-            List<UserEntity> getAllUsers = userRepository.findAll();
 
             for (UserEntity repeatField : getAllUsers) {
                 if (repeatField != null) {

@@ -1,10 +1,8 @@
 package com.spring.security.config;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
     @Override
@@ -20,14 +18,12 @@ public class CorsConfig implements WebMvcConfigurer {
 
         //Privada
         registry.addMapping("/auth/**")
-                .allowedOrigins("http://localhost:4200")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedOrigins("*")
+                .allowedMethods("POST", "OPTIONS")
                 .allowedHeaders("Origin", "Content-Type", "Accept", "Authorization")
                 .allowCredentials(false)
                 .maxAge(3600);
-
-
+        
     }
-
 
 }

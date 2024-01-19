@@ -18,7 +18,7 @@ public class UserControllers {
     @Autowired
     IUserService userService;
 
-    @GetMapping("/find-all")
+    @GetMapping("/all")
     private ResponseEntity<List<UserEntity>> getAllUsers() {
         return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
     }

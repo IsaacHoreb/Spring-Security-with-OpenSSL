@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IUserService {
 
-    List<UserEntity> findAllUsers();
+    public List<UserEntity> findAllUsers();
 
 
 }
